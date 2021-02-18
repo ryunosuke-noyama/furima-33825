@@ -8,10 +8,11 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :scheduled_delivery
 
-  validates :name, :info, :price, presence: true
+  validates :image, :name, :info, presence: true
   validates :category_id, numericality: { other_than: 1 }
   validates :sales_status_id, numericality: { other_than: 1 } 
   validates :shipping_fee_status_id, numericality: { other_than: 1 } 
   validates :prefecture_id, numericality: { other_than: 1 } 
   validates :scheduled_delivery_id, numericality: { other_than: 1 } 
+  validates :price, presence: true, inclusion: {in: 300..9999999 } , format: { with: /\A[0-9]+\z/}
 end

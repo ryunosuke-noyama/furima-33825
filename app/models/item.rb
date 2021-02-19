@@ -14,9 +14,12 @@ class Item < ApplicationRecord
     validates :info, length: { maximum: 1000 }
     validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
   end
-  validates :category_id, numericality: { other_than: 1 }
-  validates :sales_status_id, numericality: { other_than: 1 }
-  validates :shipping_fee_status_id, numericality: { other_than: 1 }
-  validates :prefecture_id, numericality: { other_than: 1 }
-  validates :scheduled_delivery_id, numericality: { other_than: 1 }
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :sales_status_id
+    validates :shipping_fee_status_id
+    validates :prefecture_id
+    validates :scheduled_delivery_id
+  end
+
 end

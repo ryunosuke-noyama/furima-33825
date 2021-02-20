@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
     it 'メールアドレスは、@を含む必要があること' do
       @user.email = 'sample.sample.com'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email is invalid")
+      expect(@user.errors.full_messages).to include('Email is invalid')
     end
     it 'パスワードが必須であること' do
       @user.password = ''
@@ -49,19 +49,19 @@ RSpec.describe User, type: :model do
       @user.password = '123456'
       @user.password_confirmation = @user.password
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid", "Password confirmation is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid', 'Password confirmation is invalid')
     end
     it 'パスワードは、英字のみでは登録できない' do
       @user.password = 'abcdef'
       @user.password_confirmation = @user.password
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid", "Password confirmation is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid', 'Password confirmation is invalid')
     end
     it 'パスワードは、全角では登録できない' do
       @user.password = '１２３ａｂｃ'
       @user.password_confirmation = @user.password
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid", "Password confirmation is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid', 'Password confirmation is invalid')
     end
     it 'ユーザー本名は、名字が必須であること' do
       @user.first_name = ''
@@ -86,7 +86,7 @@ RSpec.describe User, type: :model do
     it 'ユーザー本名のフリガナは、名字が必須であること' do
       @user.first_name_kana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana is invalid")
+      expect(@user.errors.full_messages).to include("First name kana can't be blank", 'First name kana is invalid')
     end
     it 'ユーザー本名のフリガナは、名字が全角（カタカナ）での入力が必須であること' do
       @user.first_name_kana = 'ああ'
@@ -109,5 +109,4 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Birthday can't be blank")
     end
   end
-
 end

@@ -143,7 +143,7 @@
             <%= item.name %>
           </h3>
           <div class='item-price'>
-            <span><%= item.price %>円<br><%= ShippingFeeStatus.find(item.shipping_fee_status_id).name %></span>
+            <span><%= item.price %>円<br><%= item.shipping_fee_status.name %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>

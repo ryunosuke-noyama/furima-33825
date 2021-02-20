@@ -21,5 +21,4 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :scheduled_delivery_id
   end
-
 end

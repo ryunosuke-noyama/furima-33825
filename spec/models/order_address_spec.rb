@@ -18,14 +18,19 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address).to be_valid
       end
       it '郵便番号の保存にはハイフンが必要であること（123-4567となる）' do
-        @order_address.postal_code = 1234567
+        @order_address.postal_code = 1_234_567
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '電話番号は11桁以内の数値のみ保存可能なこと（09012345678となる）' do
-        @order_address.phone_number = 123456789012
+        @order_address.phone_number = 123_456_789_012
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid.")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid.')
+      end
+      it 'tokenが空では登録できないこと' do
+        @order_address.token = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
     end
   end

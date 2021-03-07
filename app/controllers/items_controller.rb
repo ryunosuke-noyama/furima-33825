@@ -51,6 +51,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_edit
-    redirect_to root_path if @item.order.present? && @item.user_id == current_user.id
+    redirect_to root_path unless @item.order.blank? && @item.user_id == current_user.id
   end
 end
